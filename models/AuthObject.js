@@ -1,28 +1,36 @@
-const mongoose = require('mongoose');
+const mongoose = require( 'mongoose' );
 
-const authObjectSchema = new mongoose.Schema({
-    character_id : {
-        type: Number,
-        required: true
+const authObjectSchema = new mongoose.Schema( {
+    characterID : {
+        type : String,
+        required : true
     },
-    character_name : {
+    characterName : {
+        type : String,
+        required : true
+    },
+    characterCorpID: {
         type: String,
         required: true
     },
-    discord_id : {
-        type: Number,
-        required: true
+    discordID : {
+        type : String,
+        required : true
     },
-    access_token : {
-        type: String
+    accessToken : {
+        type : String
     },
-    refresh_token : {
-        type: String
+    refreshToken : {
+        type : String
     },
-    expires : {
-        type: Number
+    expiresIn : {
+        type : String
+    },
+    hasDiscordAuth : {
+        type : Boolean,
+        default: false
     }
-});
+} );
 
 
-module.exports = mongoose.model('AuthObject', authObjectSchema);
+module.exports = mongoose.model( 'AuthObject', authObjectSchema );
