@@ -3,7 +3,8 @@ const mongoose = require( 'mongoose' );
 const authObjectSchema = new mongoose.Schema( {
     characterID : {
         type : String,
-        required : true
+        required : true,
+        unique: true
     },
     characterName : {
         type : String,

@@ -25,7 +25,7 @@ router.get( '/oauth-callback/', async ( req, res ) => {
     try {
         const currentUrl = `${ req.protocol }://${ req.get( 'host' ) }${ req.originalUrl }`;
         const { characterID, characterName, accessToken, refreshToken, expiresIn } = await sso.handleCallback( currentUrl, state, clearCode );
-        const [ { corporation_id } ] = await esi.character.corpHistory( Number( characterID ) );
+        const [ { corporation_id } ] = await esi.character.affiliation( [ Number( characterID ) ] );
         if ( discordCorporationIDs.includes( String( corporation_id ) ) ) {
             user = {
                 characterID : characterID,
