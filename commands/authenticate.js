@@ -40,6 +40,7 @@ module.exports = {
                     for ( const r of rolesToGrant ) {
                         const role = message.guild.roles.cache.find( role => role.name === r );
                         await message.member.roles.add(role);
+                        await message.member.setNickname(response.characterName);
                     }
                      message.channel.send( `Op success ${ message.member }` );
                 }
