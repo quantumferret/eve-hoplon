@@ -1,18 +1,18 @@
-const mongoose = require( 'mongoose' );
+const mongoose = require( 'mongoose' )
 
 const authObjectSchema = new mongoose.Schema( {
     characterID : {
         type : String,
         required : true,
-        unique: true
+        unique : true
     },
     characterName : {
         type : String,
         required : true
     },
-    characterCorpID: {
-        type: String,
-        required: true
+    characterCorpID : {
+        type : String,
+        required : true
     },
     discordID : {
         type : String,
@@ -29,9 +29,9 @@ const authObjectSchema = new mongoose.Schema( {
     },
     hasDiscordAuth : {
         type : Boolean,
-        default: false
+        default : false
     }
-} );
+} )
 
 
-module.exports = mongoose.model( 'AuthObject', authObjectSchema );
+module.exports = mongoose.model( 'AuthObject', authObjectSchema )

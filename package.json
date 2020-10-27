@@ -18,10 +18,10 @@
     "eve-oauth2-client": "^1.0.0",
     "express": "^4.17.1",
     "mongoose": "^5.10.9",
-    "node-fetch": "^2.6.1"
+    "redis": "^3.0.2"
   },
   "devDependencies": {
-    "axios": "^0.20.0",
+    "axios": "^0.21.0",
     "nodemon": "^2.0.5"
   }
 }
