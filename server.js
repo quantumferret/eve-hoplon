@@ -31,7 +31,6 @@ app.use( json() )
 app.use( '/api/eve', everouter.router )
 
 app.get( '/', ( req, res ) => {
-    // res.status(200).sendFile(path.join(__dirname, 'index.html'));
     res.redirect( '/api/eve/login' )
 } )
 
