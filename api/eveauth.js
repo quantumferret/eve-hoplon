@@ -1,7 +1,7 @@
 require( 'dotenv' ).config()
 const express = require( 'express' )
 const SsoProvider = require( 'eve-oauth2-client' )
-const esi = require( 'esijs' )
+const esiJS = require( 'esijs' )
 const path = require( 'path' )
 const AuthObject = require( '../models/AuthObject' )
 const GuildRecord = require( '../models/Guild' )
@@ -9,6 +9,7 @@ const GuildRecord = require( '../models/Guild' )
 const router = express.Router()
 const client_id = process.env.CLIENT_ID
 const callback_url = process.env.CALLBACK_URL
+const esiClient = new esiJS( { logging : false } )
 
 const sso = new SsoProvider( client_id )
 const scopes = [ 'publicData' ]
@@ -26,8 +27,9 @@ router.get( '/oauth-callback/', async ( req, res ) => {
     try {
         const currentUrl = `${ req.protocol }://${ req.get( 'host' ) }${ req.originalUrl }`
         const { characterID, characterName, accessToken, refreshToken, expiresIn } = await sso.handleCallback( currentUrl, state, clearCode )
-        const [ { corporation_id } ] = await esi.character.affiliation( [ Number( characterID ) ] )
-        
+        let { headers, data } = await esiClient.character.affiliation( [ Number( characterID ) ] )
+        console.log( headers )
+        const [ { corporation_id } ] = data
         user = {
             characterID : characterID,
             characterName : characterName,
@@ -71,6 +73,11 @@ router.get( '/eveauth-request', async ( req, res ) => {
         console.log( e )
     }
 } )
+
+
+router.get('/members', async (req, res) => {
+
+})
 
 
 exports.router = router

@@ -6,9 +6,7 @@ require( './bot.js' )
 global.fetch = require( 'node-fetch' )
 const app = express()
 const everouter = require( './api/eveauth' )
-const redis = require( 'redis' )
 
-const redis_client = redis.createClient()
 
 mongoose.connect( `${ process.env.DB_URL }/eveauthdb`, {
     useNewUrlParser : true,
